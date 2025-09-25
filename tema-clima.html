@@ -342,6 +342,10 @@
             transform: translateY(0);
         }
 
+        .material-card.hidden {
+            display: none;
+        }
+
         .material-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -702,6 +706,7 @@
                 <button class="tab" data-categoria="noticias">Notícias</button>
                 <button class="tab" data-categoria="ferramentas">Ferramentas</button>
                 <button class="tab" data-categoria="cases">Cases de Sucesso</button>
+                <button class="tab" data-categoria="todos">Ver Todos</button>
             </div>
             
             <div class="materiais-grid" id="materiais-container">
@@ -739,8 +744,8 @@
                     </div>
                 </div>
                 
-                <!-- Notícias (inicialmente ocultas) -->
-                <div class="material-card" data-categoria="noticias">
+                <!-- Notícias -->
+                <div class="material-card hidden" data-categoria="noticias">
                     <div class="material-icon">
                         <i class="fas fa-newspaper"></i>
                     </div>
@@ -751,7 +756,7 @@
                     </div>
                 </div>
                 
-                <div class="material-card" data-categoria="noticias">
+                <div class="material-card hidden" data-categoria="noticias">
                     <div class="material-icon">
                         <i class="fas fa-globe-americas"></i>
                     </div>
@@ -762,8 +767,8 @@
                     </div>
                 </div>
                 
-                <!-- Ferramentas (inicialmente ocultas) -->
-                <div class="material-card" data-categoria="ferramentas">
+                <!-- Ferramentas -->
+                <div class="material-card hidden" data-categoria="ferramentas">
                     <div class="material-icon">
                         <i class="fas fa-tools"></i>
                     </div>
@@ -774,7 +779,7 @@
                     </div>
                 </div>
                 
-                <div class="material-card" data-categoria="ferramentas">
+                <div class="material-card hidden" data-categoria="ferramentas">
                     <div class="material-icon">
                         <i class="fas fa-database"></i>
                     </div>
@@ -785,8 +790,8 @@
                     </div>
                 </div>
                 
-                <!-- Cases (inicialmente ocultas) -->
-                <div class="material-card" data-categoria="cases">
+                <!-- Cases -->
+                <div class="material-card hidden" data-categoria="cases">
                     <div class="material-icon">
                         <i class="fas fa-city"></i>
                     </div>
@@ -797,7 +802,7 @@
                     </div>
                 </div>
                 
-                <div class="material-card" data-categoria="cases">
+                <div class="material-card hidden" data-categoria="cases">
                     <div class="material-icon">
                         <i class="fas fa-seedling"></i>
                     </div>
@@ -873,11 +878,27 @@
     </footer>
 
     <script>
-        // Navegação por abas dos materiais de apoio
+        // Navegação por abas dos materiais de apoio - CORRIGIDO
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.tab');
             const materialCards = document.querySelectorAll('.material-card');
             
+            // Função para filtrar os cards por categoria
+            function filterCards(categoria) {
+                materialCards.forEach(card => {
+                    const cardCategoria = card.getAttribute('data-categoria');
+                    
+                    if (categoria === 'todos' || cardCategoria === categoria) {
+                        card.classList.remove('hidden');
+                        card.classList.add('visible');
+                    } else {
+                        card.classList.remove('visible');
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+            
+            // Adicionar evento de clique às abas
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
                     // Remover classe active de todas as abas
@@ -886,17 +907,12 @@
                     this.classList.add('active');
                     
                     const categoria = this.getAttribute('data-categoria');
-                    
-                    // Mostrar/ocultar cards conforme a categoria
-                    materialCards.forEach(card => {
-                        if (categoria === 'todos' || card.getAttribute('data-categoria') === categoria) {
-                            card.classList.add('visible');
-                        } else {
-                            card.classList.remove('visible');
-                        }
-                    });
+                    filterCards(categoria);
                 });
             });
+            
+            // Inicializar com a categoria ativa (artigos)
+            filterCards('artigos');
             
             // Animação de entrada dos elementos ao rolar
             const observerOptions = {
@@ -906,7 +922,7 @@
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
+                    if (entry.isIntersecting && !entry.target.classList.contains('hidden')) {
                         entry.target.style.opacity = '1';
                         entry.target.style.transform = 'translateY(0)';
                     }
