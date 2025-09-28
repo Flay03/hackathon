@@ -605,3 +605,47 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.google-form-container {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 0;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.google-form-container iframe {
+    border: none;
+    min-height: 500px;
+    display: block;
+}
+
+.form-alternative {
+    text-align: center;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: var(--border-radius);
+    border: 1px solid #e9ecef;
+}
+
+.form-alternative a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.form-alternative a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustes para responsividade */
+@media (max-width: 768px) {
+    .google-form-container iframe {
+        height: 700px; /* Mais altura para mobile */
+    }
+    
+    .inscricao-form {
+        margin-top: 1rem;
+    }
+}
