@@ -648,4 +648,23 @@ footer {
     .inscricao-form {
         margin-top: 1rem;
     }
+
+}
+
+.whatsapp-button {
+    background-color: #25D366;
+    border: 2px solid #25D366;
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E;
+    border-color: #128C7E;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(37, 211, 102, 0.3);
 }
