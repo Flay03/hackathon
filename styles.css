@@ -98,14 +98,6 @@ h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-.community-button {
-    background-color: #25D366 !important; /* Verde WhatsApp */
-}
-
-.community-button:hover {
-    background-color: #128C7E !important; /* Verde WhatsApp mais escuro */
-}
-
 /* Header e Navegação */
 .navbar {
     position: fixed;
@@ -815,6 +807,7 @@ footer {
     }
 
 }
+
 
 
 
