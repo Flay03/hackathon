@@ -75,6 +75,37 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    margin-bottom: 2rem; /* Espaço antes do social-share */
+}
+
+.social-share {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-share p {
+    margin: 0;
+    color: white;
+}
+
+.community-button {
+    background-color: #25D366 !important; /* Verde WhatsApp */
+}
+
+.community-button:hover {
+    background-color: #128C7E !important; /* Verde WhatsApp mais escuro */
+}
+
 /* Header e Navegação */
 .navbar {
     position: fixed;
@@ -784,5 +815,6 @@ footer {
     }
 
 }
+
 
 
